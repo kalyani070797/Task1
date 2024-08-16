@@ -22,6 +22,7 @@ builder.Services.AddScoped<ICustomerCreator, CustomerCreator>();
 builder.Services.AddScoped<IVehicleCreator, VehicleCreator>();
 builder.Services.AddScoped<IBookingCreator, BookingCreator>();
 builder.Services.AddScoped<IPaymentCreator, PaymentCreator>();
+builder.Services.AddScoped<IGetDetails, GetDetails>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

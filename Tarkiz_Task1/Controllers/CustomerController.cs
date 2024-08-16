@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Tarkiz_Task1.Core.Cust.Implementation;
 using Tarkiz_Task1.Core.Cust.Interface;
+using Tarkiz_Task1.Infrastructure.PracticeDBContext;
 using Tarkiz_Task1.Model.Cus;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,9 +14,11 @@ namespace Tarkiz_Task1.Controllers
     public class CustomerController : ControllerBase
     {
         public readonly ICustomerCreator _customerCreator;
-        public CustomerController(ICustomerCreator customerCreator)
+        public readonly IGetDetails  _getDetails;
+        public CustomerController(ICustomerCreator customerCreator, IGetDetails getDetails)
         {
             _customerCreator = customerCreator;
+          _getDetails = getDetails;
         }
 
         // GET: api/<CustomerController>
@@ -47,6 +52,13 @@ namespace Tarkiz_Task1.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet("GetCustomersByStartingLocation")]
+        public IActionResult GetCustomersByStartingLocation(string startingLocation)
+        {
+           var detials=  _getDetails.Detils( startingLocation );
+            return Ok(detials);
         }
     }
 }

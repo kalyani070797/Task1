@@ -12,8 +12,8 @@ using Tarkiz_Task1.Infrastructure.PracticeDBContext;
 namespace Tarkiz_Task1.Infrastructure.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20240816174840_createt")]
-    partial class createt
+    [Migration("20240816184919_createtable")]
+    partial class createtable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
