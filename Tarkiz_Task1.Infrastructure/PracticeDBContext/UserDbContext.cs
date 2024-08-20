@@ -17,6 +17,5 @@ namespace Tarkiz_Task1.Infrastructure.PracticeDBContext
         public DbSet<Vehicle> Vehicle { get; set; }
         public DbSet<Booking> Booking { get; set; }
         public DbSet<Payment> Payment { get; set; }
-
     }
 }

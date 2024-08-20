@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Tarkiz_Task1.Core.Cust.Implementation;
 using Tarkiz_Task1.Core.Cust.Interface;
 using Tarkiz_Task1.Model.Cus;
 
@@ -10,12 +11,13 @@ namespace Tarkiz_Task1.Controllers
     [ApiController]
     public class BookingController : ControllerBase
     {
+        public readonly ICustomerBookingDetails _customerBookingDetails;
         public readonly IBookingCreator _bookinCreator;
-        public BookingController(IBookingCreator bookinCreator)
+        public BookingController(IBookingCreator bookinCreator,ICustomerBookingDetails customerBookingDetails)
         {
             _bookinCreator = bookinCreator;
+            _customerBookingDetails = customerBookingDetails;
         }
-
 
         // GET: api/<BookingController>
         [HttpGet]
@@ -48,6 +50,12 @@ namespace Tarkiz_Task1.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpPost("CustomerBooking")]
+        public void Post([FromBody] CustomerBookingRequestModel customerBooking)
+        {
+            _customerBookingDetails.CustomerBooking(customerBooking);
         }
     }
 }
